@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 type SignupSidebarProps = {
 	steps: ReactNode[];
-	currentStep: number;
+	currentStepIndex: number;
 };
 
-function SignupSidebar({ steps, currentStep }: SignupSidebarProps) {
+function SignupSidebar({ steps, currentStepIndex }: SignupSidebarProps) {
 	return (
 		<div className='signup-sidebar'>
 			<div className='signup-sidebar__steps'>
@@ -13,7 +13,7 @@ function SignupSidebar({ steps, currentStep }: SignupSidebarProps) {
 					<>
 						<div
 							className={
-								currentStep === index
+								currentStepIndex === index
 									? "signup-sidebar__step signup-sidebar__step--active"
 									: "signup-sidebar__step"
 							}>
