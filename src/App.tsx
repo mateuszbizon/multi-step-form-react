@@ -1,5 +1,9 @@
-import SignupContent from "./components/SignupContent";
-import SignupSidebar from "./components/SignupSidebar";
+import AddOns from "./components/Form/AddOns";
+import PersonInfo from "./components/Form/PersonInfo";
+import SelectPlan from "./components/Form/SelectPlan";
+import Summary from "./components/Form/Summary";
+import SignupContent from "./components/Signup/SignupContent";
+import SignupSidebar from "./components/Signup/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
 import "./sass/main.scss";
 
@@ -12,7 +16,7 @@ function App() {
 		goToPreviousStep,
 		isFirstStep,
 		isLastStep,
-	} = useMultistepForm([<div>hello</div>, <div>hello2</div>]);
+	} = useMultistepForm([<PersonInfo />, <SelectPlan />, <AddOns />, <Summary />]);
 
 	return (
 		<>
