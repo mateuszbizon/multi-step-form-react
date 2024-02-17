@@ -20,7 +20,9 @@ function useMultistepForm(steps: ReactNode[]) {
 		currentStepIndex,
         currentStep: steps[currentStepIndex],
         goToNextStep,
-        goToPreviousStep
+        goToPreviousStep,
+        isFirstStep: currentStepIndex === 0,
+        isLastStep: currentStepIndex === steps.length - 1,
 	};
 }
 

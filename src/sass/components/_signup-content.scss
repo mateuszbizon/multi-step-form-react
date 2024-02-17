@@ -25,6 +25,10 @@
 		padding: 15px;
 	}
 
+	&__buttons--first-step {
+		justify-content: flex-end;
+	}
+
 	&__next-btn {
 		padding: 10px 20px;
 		background-color: $next-btn-background-color;
@@ -39,10 +43,18 @@
 		}
 	}
 
+    &__next-btn--confirm-btn {
+        background-color: $confirm-btn-background-color;
+
+        &:hover {
+            background-color: $confirm-btn-background-color-hover;
+        }
+    }
+
 	&__previous-btn {
 		background: none;
 		border: none;
 		color: $main-grey-color;
-        cursor: pointer;
+		cursor: pointer;
 	}
 }
