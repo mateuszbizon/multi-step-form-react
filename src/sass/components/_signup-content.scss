@@ -1,0 +1,25 @@
+.signup-content {
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+
+	&__main-content {
+		position: absolute;
+		top: -70px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 90%;
+		min-height: 200px;
+		background-color: #fff;
+		border-radius: 8px;
+	}
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        background-color: #fff;
+        padding: 15px;
+    }
+}

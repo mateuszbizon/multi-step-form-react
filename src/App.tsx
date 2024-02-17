@@ -1,3 +1,4 @@
+import SignupContent from "./components/SignupContent";
 import SignupSidebar from "./components/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
 import "./sass/main.scss";
@@ -9,6 +10,7 @@ function App() {
 		<>
 			<div className='signup'>
 				<SignupSidebar steps={steps} currentStepIndex={currentStepIndex} />
+				<SignupContent />
 			</div>
 		</>
 	);
