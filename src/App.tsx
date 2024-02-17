@@ -4,13 +4,19 @@ import useMultistepForm from "./hooks/useMultistepForm";
 import "./sass/main.scss";
 
 function App() {
-	const { steps, currentStepIndex } = useMultistepForm([<div>hello</div>, <div>hello2</div>]);
+	const {
+		steps,
+		currentStepIndex,
+		currentStep,
+		goToNextStep,
+		goToPreviousStep,
+	} = useMultistepForm([<div>hello</div>, <div>hello2</div>]);
 
 	return (
 		<>
 			<div className='signup'>
 				<SignupSidebar steps={steps} currentStepIndex={currentStepIndex} />
-				<SignupContent />
+				<SignupContent currentStep={currentStep} goToNextStep={goToNextStep} goToPreviousStep={goToPreviousStep} />
 			</div>
 		</>
 	);
