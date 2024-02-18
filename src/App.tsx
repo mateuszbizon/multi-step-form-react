@@ -5,9 +5,20 @@ import Summary from "./components/Form/Summary";
 import SignupContent from "./components/Signup/SignupContent";
 import SignupSidebar from "./components/Signup/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
+import { signupSchema, FormFields } from "./validations/SignupSchema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import "./sass/main.scss";
 
 function App() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormFields>({
+		resolver: zodResolver(signupSchema),
+	});
+
 	const {
 		steps,
 		currentStepIndex,
@@ -16,7 +27,12 @@ function App() {
 		goToPreviousStep,
 		isFirstStep,
 		isLastStep,
-	} = useMultistepForm([<PersonInfo />, <SelectPlan />, <AddOns />, <Summary />]);
+	} = useMultistepForm([
+		<PersonInfo register={register} errors={errors} />,
+		<SelectPlan />,
+		<AddOns />,
+		<Summary />,
+	]);
 
 	return (
 		<>
@@ -28,6 +44,7 @@ function App() {
 					goToPreviousStep={goToPreviousStep}
 					isFirstStep={isFirstStep}
 					isLastStep={isLastStep}
+					handleSubmit={handleSubmit}
 				/>
 			</div>
 		</>
