@@ -6,10 +6,10 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	height: 100%;
-	
+
 	&__main-content {
 		position: absolute;
-		top: -70px;
+		top: -37px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 90%;
@@ -44,13 +44,13 @@
 		}
 	}
 
-    &__next-btn--confirm-btn {
-        background-color: $secondary-color;
+	&__next-btn--confirm-btn {
+		background-color: $secondary-color;
 
-        &:hover {
-            background-color: $secondary-color-hover;
-        }
-    }
+		&:hover {
+			background-color: $secondary-color-hover;
+		}
+	}
 
 	&__previous-btn {
 		background: none;
