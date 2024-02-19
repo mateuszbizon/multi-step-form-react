@@ -6,6 +6,6 @@ export const signupSchema = z.object({
     name: z.string().min(1, "This field is required"),
     email: z.string().email("This field is required"),
     phone: z.string().regex(phoneRegex, "This field is required"),
-})
+}).partial();
 
 export type FormFields = z.infer<typeof signupSchema>

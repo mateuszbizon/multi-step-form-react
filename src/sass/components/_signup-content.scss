@@ -6,7 +6,7 @@
 	flex-direction: column;
 	justify-content: flex-end;
 	height: 100%;
-
+	
 	&__main-content {
 		position: absolute;
 		top: -70px;
@@ -16,6 +16,7 @@
 		min-height: 200px;
 		background-color: #fff;
 		border-radius: 8px;
+		padding: 20px 15px;
 	}
 
 	&__buttons {

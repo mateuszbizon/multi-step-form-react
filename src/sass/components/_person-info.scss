@@ -1,6 +1,64 @@
+@use "../abstracts/colors" as *;
+
 .person-info {
-    &__box {
-        display: flex;
-        flex-direction: column;
-    }
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	&__title {
+		font-size: 28px;
+		color: $main-color;
+	}
+
+	&__desc {
+		color: $main-grey-color;
+		line-height: 22px;
+	}
+
+	&__label {
+		color: $main-color;
+		margin-bottom: 3px;
+		font-size: 13px;
+	}
+
+	&__input {
+		padding: 8px 16px;
+		border-radius: 5px;
+		border: 1px solid $main-grey-color;
+		color: $main-color;
+
+		&::placeholder {
+			color: $main-grey-color;
+			font-weight: 700;
+		}
+
+		&:focus {
+			outline: none;
+			border: 1px solid $secondary-color;
+		}
+	}
+
+	&__input--error {
+		border: 1px solid $error-color;
+
+		&:focus {
+			border: 1px solid $error-color;
+		}
+	}
+
+	&__box {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 5px;
+	}
+
+	&__error-text {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 13px;
+		color: $error-color;
+		font-weight: 700;
+	}
 }
