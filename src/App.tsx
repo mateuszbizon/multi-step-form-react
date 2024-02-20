@@ -8,9 +8,14 @@ import useMultistepForm from "./hooks/useMultistepForm";
 import { signupSchema, FormFields } from "./validations/SignupSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { MONTHLY } from "./constants";
+import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
 import "./sass/main.scss";
 
 function App() {
+	const [mode, setMode] = useState<string>(MONTHLY);
+	const [selectedPlan, setSelectedPlan] = useState<SelectPlanItems>(selectPlanItems[0])
 	const {
 		register,
 		handleSubmit,
@@ -29,7 +34,7 @@ function App() {
 		isLastStep,
 	} = useMultistepForm([
 		<PersonInfo register={register} errors={errors} />,
-		<SelectPlan />,
+		<SelectPlan mode={mode} setMode={setMode} />,
 		<AddOns />,
 		<Summary />,
 	]);
