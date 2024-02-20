@@ -1,4 +1,5 @@
 @use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
 
 .person-info {
 	display: flex;
@@ -6,13 +7,11 @@
 	gap: 10px;
 
 	&__title {
-		font-size: 28px;
-		color: $main-color;
+		@include formTitle;
 	}
 
 	&__desc {
-		color: $main-grey-color;
-		line-height: 22px;
+		@include formDescription;
 	}
 
 	&__label {

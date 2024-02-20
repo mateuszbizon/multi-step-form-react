@@ -43,16 +43,22 @@
 	&__item-name {
 		color: $main-color;
 		font-weight: 700;
+		font-size: 15px;
 	}
 
 	&__item-price {
 		color: $main-grey-color;
-		font-size: 14px;
+		font-size: 13px;
 	}
 
 	&__item-months-free {
 		color: $main-color;
-		font-size: 14px;
+		font-size: 12px;
+		visibility: hidden;
+	}
+
+	&__item-months-free--show {
+		visibility: visible;
 	}
 
 	&__switch-box {

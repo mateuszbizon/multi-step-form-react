@@ -39,9 +39,11 @@ function SelectPlan({ mode, setMode, selectedPlan, setSelectedPlan }: SelectPlan
 						<div className='select-plan__text-side'>
 							<span className='select-plan__item-name'>{item.name}</span>
 							<span className='select-plan__item-price'>
-                ${mode == MONTHLY ? item.monthly : item.yearly}/{mode == MONTHLY ? "mo" : "yr"}
-              </span>
-              {mode == YEARLY && <span className="select-plan__item-months-free">2 months free</span>}
+                				${mode == MONTHLY ? item.monthly : item.yearly}/{mode == MONTHLY ? "mo" : "yr"}
+              				</span>
+							<span className={mode == MONTHLY ? "select-plan__item-months-free" : "select-plan__item-months-free select-plan__item-months-free--show"}>
+								2 months free
+							</span>
 						</div>
 					</div>
 				))}
