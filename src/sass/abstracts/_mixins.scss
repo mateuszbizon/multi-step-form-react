@@ -1,0 +1,11 @@
+@use "./colors" as *;
+
+@mixin formTitle {
+	font-size: 28px;
+	color: $main-color;
+}
+
+@mixin formDescription {
+	color: $main-grey-color;
+	line-height: 22px;
+}

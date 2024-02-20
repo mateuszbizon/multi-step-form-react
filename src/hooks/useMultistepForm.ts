@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 
 function useMultistepForm(steps: ReactNode[]) {
-	const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
+	const [currentStepIndex, setCurrentStepIndex] = useState<number>(1);
 
     function goToNextStep() {
         if (steps.length - 1 === currentStepIndex) return;
