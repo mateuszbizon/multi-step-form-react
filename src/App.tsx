@@ -34,7 +34,7 @@ function App() {
 		isLastStep,
 	} = useMultistepForm([
 		<PersonInfo register={register} errors={errors} />,
-		<SelectPlan mode={mode} setMode={setMode} />,
+		<SelectPlan mode={mode} setMode={setMode} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />,
 		<AddOns />,
 		<Summary />,
 	]);
