@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { FormFields } from "../../App";
+import { FormFields, FormFieldsErrors } from "../../App";
 
 type PersonInfoFields = {
   name: string;
@@ -10,9 +10,10 @@ type PersonInfoFields = {
 type PersonInfoProps = {
   form: FormFields;
   updateFormFields: (fields: Partial<PersonInfoFields>) => void;
+  errors: Partial<FormFieldsErrors>;
 }
 
-function PersonInfo({ form, updateFormFields }: PersonInfoProps) {
+function PersonInfo({ form, updateFormFields, errors }: PersonInfoProps) {
   function handleUpdateFormFields(e: ChangeEvent<HTMLInputElement>) {
     updateFormFields({ [e.target.name]: e.target.value })
   }
@@ -25,19 +26,19 @@ function PersonInfo({ form, updateFormFields }: PersonInfoProps) {
       <div className="person-info__box">
         <label className="person-info__label" htmlFor="name">Name</label>
         <input className={errors.name ? "person-info__input person-info__input--error" : "person-info__input"} id="name" name="name" type="text" value={form.name} onChange={handleUpdateFormFields} placeholder="e.g. Stephen King" />
-        <span className="person-info__error-text">{errors.name && errors.name.message}</span>
+        <span className="person-info__error-text">{errors.name && errors.name}</span>
       </div>
 
       <div className="person-info__box">
         <label className="person-info__label" htmlFor="email">Email Address</label>
         <input className={errors.email ? "person-info__input person-info__input--error" : "person-info__input"} id="email" name="email" type="text" value={form.email} onChange={handleUpdateFormFields} placeholder="e.g. stephenking@lorem.com" />
-        <span className="person-info__error-text">{errors.email && errors.email.message}</span>
+        <span className="person-info__error-text">{errors.email && errors.email}</span>
       </div>
 
       <div className="person-info__box">
         <label className="person-info__label" htmlFor="phone">Phone Number</label>
         <input className={errors.phone ? "person-info__input person-info__input--error" : "person-info__input"} id="phone" name="phone" type="text" value={form.phone} onChange={handleUpdateFormFields} placeholder="e.g. +1 234 567 890" />
-        <span className="person-info__error-text">{errors.phone && errors.phone.message}</span>
+        <span className="person-info__error-text">{errors.phone && errors.phone}</span>
       </div>
       
     </div>

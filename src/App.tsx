@@ -16,10 +16,17 @@ export type FormFields = {
 	phone: string;
 }
 
+export type FormFieldsErrors = {
+	name: string;
+	email: string;
+	phone: string;
+}
+
 function App() {
 	const [mode, setMode] = useState<string>(MONTHLY);
 	const [selectedPlan, setSelectedPlan] = useState<SelectPlanItems>(selectPlanItems[0])
 	const [form, setForm] = useState<FormFields>({ name: "", email: "", phone: "" });
+	const [errors, setErrors] = useState<Partial<FormFieldsErrors>>({})
 
 	function updateFormFields(fields: Partial<FormFields>) {
 		setForm(prev => {
@@ -36,7 +43,7 @@ function App() {
 		isFirstStep,
 		isLastStep,
 	} = useMultistepForm([
-		<PersonInfo form={form} updateFormFields={updateFormFields} />,
+		<PersonInfo form={form} updateFormFields={updateFormFields} errors={errors} />,
 		<SelectPlan mode={mode} setMode={setMode} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />,
 		<AddOns />,
 		<Summary />,
@@ -52,6 +59,9 @@ function App() {
 					goToPreviousStep={goToPreviousStep}
 					isFirstStep={isFirstStep}
 					isLastStep={isLastStep}
+					errors={errors}
+					setErrors={setErrors}
+					form={form}
 				/>
 			</div>
 		</>
