@@ -6,17 +6,16 @@ type SignupContentProps = {
 	goToPreviousStep: () => void;
     isFirstStep: boolean;
     isLastStep: boolean;
-    handleSubmit: any;
 };
 
-function SignupContent({ currentStep, goToNextStep, goToPreviousStep, isFirstStep, isLastStep, handleSubmit }: SignupContentProps) {
-    function submitData() {
+function SignupContent({ currentStep, goToNextStep, goToPreviousStep, isFirstStep, isLastStep }: SignupContentProps) {
+    function handleSubmit() {
         goToNextStep();
     }
 
 	return (
 		<div className='signup-content'>
-			<form onSubmit={handleSubmit(submitData)}>
+			<form onSubmit={handleSubmit}>
 				<div className='signup-content__main-content'>
                     {currentStep}
                 </div>

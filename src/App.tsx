@@ -5,15 +5,12 @@ import Summary from "./components/Form/Summary";
 import SignupContent from "./components/Signup/SignupContent";
 import SignupSidebar from "./components/Signup/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
-import { signupSchema, FormFields } from "./validations/SignupSchema";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { MONTHLY } from "./constants";
 import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
 import "./sass/main.scss";
 
-type FormFields2 = {
+export type FormFields = {
 	name: string;
 	email: string;
 	phone: string;
@@ -22,21 +19,13 @@ type FormFields2 = {
 function App() {
 	const [mode, setMode] = useState<string>(MONTHLY);
 	const [selectedPlan, setSelectedPlan] = useState<SelectPlanItems>(selectPlanItems[0])
-	const [form, setForm] = useState<FormFields2>({ name: "", email: "", phone: "" });
+	const [form, setForm] = useState<FormFields>({ name: "", email: "", phone: "" });
 
-	function updateFormFields(fields: Partial<FormFields2>) {
+	function updateFormFields(fields: Partial<FormFields>) {
 		setForm(prev => {
 			return { ...prev, ...fields }
 		})
 	}
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<FormFields>({
-		resolver: zodResolver(signupSchema),
-	});
 
 	const {
 		steps,
@@ -47,7 +36,7 @@ function App() {
 		isFirstStep,
 		isLastStep,
 	} = useMultistepForm([
-		<PersonInfo register={register} errors={errors} updateFormFields={updateFormFields} />,
+		<PersonInfo form={form} updateFormFields={updateFormFields} />,
 		<SelectPlan mode={mode} setMode={setMode} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />,
 		<AddOns />,
 		<Summary />,
@@ -63,7 +52,6 @@ function App() {
 					goToPreviousStep={goToPreviousStep}
 					isFirstStep={isFirstStep}
 					isLastStep={isLastStep}
-					handleSubmit={handleSubmit}
 				/>
 			</div>
 		</>
