@@ -13,9 +13,23 @@ import { MONTHLY } from "./constants";
 import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
 import "./sass/main.scss";
 
+type FormFields2 = {
+	name: string;
+	email: string;
+	phone: string;
+}
+
 function App() {
 	const [mode, setMode] = useState<string>(MONTHLY);
 	const [selectedPlan, setSelectedPlan] = useState<SelectPlanItems>(selectPlanItems[0])
+	const [form, setForm] = useState<FormFields2>({ name: "", email: "", phone: "" });
+
+	function updateFormFields(fields: Partial<FormFields2>) {
+		setForm(prev => {
+			return { ...prev, ...fields }
+		})
+	}
+
 	const {
 		register,
 		handleSubmit,
@@ -33,7 +47,7 @@ function App() {
 		isFirstStep,
 		isLastStep,
 	} = useMultistepForm([
-		<PersonInfo register={register} errors={errors} />,
+		<PersonInfo register={register} errors={errors} updateFormFields={updateFormFields} />,
 		<SelectPlan mode={mode} setMode={setMode} selectedPlan={selectedPlan} setSelectedPlan={setSelectedPlan} />,
 		<AddOns />,
 		<Summary />,
