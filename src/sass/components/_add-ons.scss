@@ -1,0 +1,74 @@
+@use "../abstracts/mixins" as *;
+@use "../abstracts/colors" as *;
+
+.add-ons {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+
+	&__title {
+		@include formTitle;
+	}
+
+	&__desc {
+		@include formDescription;
+	}
+
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		border: 2px solid $secondary-grey-color;
+		border-radius: 8px;
+		padding: 10px 15px;
+		cursor: pointer;
+	}
+
+	&__item--selected {
+		border: 2px solid $secondary-color;
+		background-color: $secondary-color-transparent;
+	}
+
+	&__check-side {
+		width: 20px;
+		height: 20px;
+		border-radius: 5px;
+		border: 1px solid $secondary-grey-color;
+		background-color: #fff;
+	}
+
+	&__check-side--checked {
+		background-color: $secondary-color;
+		border: none;
+	}
+
+	&__text-side {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+
+	&__item-name {
+		color: $main-color;
+		font-weight: 700;
+		font-size: 15px;
+	}
+
+	&__item-desc {
+		color: $main-grey-color;
+		font-size: 14px;
+	}
+
+	&__item-price {
+		color: $secondary-color;
+		font-size: 14px;
+		text-align: right;
+		margin-left: auto;
+	}
+}
