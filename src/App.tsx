@@ -9,30 +9,27 @@ import { useState } from "react";
 import { MONTHLY } from "./constants";
 import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
 import "./sass/main.scss";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signupSchema, SignupFields } from "./validations/SignupSchema";
 
-export type FormFields = {
-	name: string;
-	email: string;
-	phone: string;
+export type SelectedItems = {
 	selectedPlan: SelectPlanItems;
-}
-
-export type FormFieldsErrors = {
-	name: string;
-	email: string;
-	phone: string;
 }
 
 function App() {
 	const [mode, setMode] = useState<string>(MONTHLY);
-	const [form, setForm] = useState<FormFields>({ name: "", email: "", phone: "", selectedPlan: selectPlanItems[0] });
-	const [errors, setErrors] = useState<Partial<FormFieldsErrors>>({})
+	const [selectedItems, setSelectedItems] = useState<SelectedItems>({ selectedPlan: selectPlanItems[0] });
 
-	function updateFormFields(fields: Partial<FormFields>) {
-		setForm(prev => {
+	function updateSelectedItems(fields: Partial<SelectedItems>) {
+		setSelectedItems(prev => {
 			return { ...prev, ...fields }
 		})
 	}
+
+	const { register, handleSubmit, formState: { errors } } = useForm<SignupFields>({
+		resolver: zodResolver(signupSchema),
+	  });
 
 	const {
 		steps,
@@ -43,8 +40,8 @@ function App() {
 		isFirstStep,
 		isLastStep,
 	} = useMultistepForm([
-		<PersonInfo form={form} updateFormFields={updateFormFields} errors={errors} />,
-		<SelectPlan mode={mode} setMode={setMode} updateFormFields={updateFormFields} form={form} />,
+		<PersonInfo register={register} errors={errors} />,
+		<SelectPlan mode={mode} setMode={setMode} updateSelectedItems={updateSelectedItems} selectedItems={selectedItems} />,
 		<AddOns />,
 		<Summary />,
 	]);
@@ -59,9 +56,8 @@ function App() {
 					goToPreviousStep={goToPreviousStep}
 					isFirstStep={isFirstStep}
 					isLastStep={isLastStep}
-					errors={errors}
-					setErrors={setErrors}
-					form={form}
+					handleSubmit={handleSubmit}
+					selectedItems={selectedItems}
 				/>
 			</div>
 		</>

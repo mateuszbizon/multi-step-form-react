@@ -1,6 +1,6 @@
 import { selectPlanItems, SelectPlanItems } from "../../data/selectPlanItems";
 import { MONTHLY, YEARLY } from "../../constants";
-import { FormFields } from "../../App";
+import { SelectedItems } from "../../App";
 
 type SelectPlanFields = {
 	selectedPlan: SelectPlanItems;
@@ -9,11 +9,11 @@ type SelectPlanFields = {
 type SelectPlanProps = {
 	mode: string;
 	setMode: (mode: string) => void;
-	updateFormFields: (selectedPlan: Partial<SelectPlanFields>) => void;
-	form: FormFields;
+	updateSelectedItems: (selectedPlan: Partial<SelectPlanFields>) => void;
+	selectedItems: SelectedItems;
 };
 
-function SelectPlan({ mode, setMode, updateFormFields, form }: SelectPlanProps) {
+function SelectPlan({ mode, setMode, updateSelectedItems, selectedItems }: SelectPlanProps) {
 	function handleSetMode() {
 		if (mode === MONTHLY) {
 			setMode(YEARLY);
@@ -24,9 +24,9 @@ function SelectPlan({ mode, setMode, updateFormFields, form }: SelectPlanProps) 
 	}
 
   function handleSelectPlan(item: SelectPlanItems) {
-    if (item.name === form.selectedPlan.name) return;
+    if (item.name === selectedItems.selectedPlan.name) return;
 
-    updateFormFields({ selectedPlan: item });
+    updateSelectedItems({ selectedPlan: item });
   }
 
 	return (
@@ -37,7 +37,7 @@ function SelectPlan({ mode, setMode, updateFormFields, form }: SelectPlanProps) 
 			</p>
 			<div className='select-plan__items'>
 				{selectPlanItems.map(item => (
-					<div key={item.name} className={form.selectedPlan.name === item.name ? "select-plan__item select-plan__item--selected" : "select-plan__item"} onClick={() => handleSelectPlan(item)}>
+					<div key={item.name} className={selectedItems.selectedPlan.name === item.name ? "select-plan__item select-plan__item--selected" : "select-plan__item"} onClick={() => handleSelectPlan(item)}>
 						<div>
 							<img src={item.img} alt='' />
 						</div>

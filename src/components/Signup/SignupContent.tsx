@@ -1,6 +1,6 @@
-import { FormEvent, ReactNode, useEffect } from "react";
-import { FormFieldsErrors, FormFields } from "../../App";
-import personInfoValidation from "../../validations/personInfoValidation";
+import { ReactNode } from "react";
+import { SignupFields } from "../../validations/SignupSchema";
+import { SelectedItems } from "../../App";
 
 type SignupContentProps = {
 	currentStep: ReactNode;
@@ -8,9 +8,8 @@ type SignupContentProps = {
 	goToPreviousStep: () => void;
 	isFirstStep: boolean;
 	isLastStep: boolean;
-	errors: Partial<FormFieldsErrors>;
-	setErrors: (errors: Partial<FormFieldsErrors>) => void;
-	form: FormFields;
+	handleSubmit: any;
+	selectedItems: SelectedItems;
 };
 
 function SignupContent({
@@ -19,28 +18,20 @@ function SignupContent({
 	goToPreviousStep,
 	isFirstStep,
 	isLastStep,
-	errors,
-	setErrors,
-	form,
+	handleSubmit,
+	selectedItems,
 }: SignupContentProps) {
-	function handleSubmit(e: FormEvent) {
-        e.preventDefault();
-		setErrors(personInfoValidation(form));
+	function submitData(data: SignupFields) {
+		goToNextStep();
+		const finalData = {
+			...data,
+			...selectedItems
+		}
 	}
-
-    function handleGoToNextStep() {
-        goToNextStep();
-    }
-
-    useEffect(() => {
-        if (Object.keys(errors).length == 0 && form.email.length > 0 && form.name.length > 0 && form.phone.length > 0) {
-            handleGoToNextStep();
-        }
-    }, [errors])
 
 	return (
 		<div className='signup-content'>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit(submitData)}>
 				<div className='signup-content__main-content'>{currentStep}</div>
 				<div
 					className={
