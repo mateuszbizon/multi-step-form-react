@@ -15,6 +15,10 @@ function Summary() {
           <span className="summary__add-ons-name">Online service</span>
           <span className="summary__add-ons-price">+$1/mo</span>
         </div>
+        <div className="summary__add-ons-box">
+          <span className="summary__add-ons-name">Online service</span>
+          <span className="summary__add-ons-price">+$1/mo</span>
+        </div>
       </div>
       <div className="summary__total-box">
         <span className="summary__total-text">Total (per month)</span>

@@ -1,0 +1,82 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+.summary {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+
+	&__title {
+		@include formTitle;
+	}
+
+	&__desc {
+		@include formDescription;
+	}
+
+	&__main-container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		background-color: $main-background-color;
+		border-radius: 5px;
+		padding: 15px;
+		font-size: 15px;
+		margin-bottom: 5px;
+	}
+
+	&__plan-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid $main-grey-color;
+		padding-bottom: 10px;
+	}
+
+	&__plan-text {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+	}
+
+	&__plan-name,
+	&__plan-price {
+		color: $main-color;
+		font-weight: 700;
+	}
+
+	&__plan-change-btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		width: max-content;
+		font-size: 15px;
+		color: $main-grey-color;
+	}
+
+	&__add-ons-box {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__add-ons-name,
+	&__total-text {
+		color: $main-grey-color;
+	}
+
+	&__add-ons-price {
+		color: $main-color;
+	}
+
+	&__total-box {
+		display: flex;
+		justify-content: space-between;
+		padding: 0 15px;
+		font-size: 15px;
+	}
+
+	&__total-price {
+		color: $secondary-color;
+		font-weight: 700;
+	}
+}
