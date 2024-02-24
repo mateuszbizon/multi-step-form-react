@@ -1,5 +1,4 @@
 import { selectPlanItems, SelectPlanItems } from "../../data/selectPlanItems";
-import { MONTHLY, YEARLY } from "../../constants";
 import { SelectedItems } from "../../App";
 
 type SelectPlanFields = {
@@ -7,21 +6,13 @@ type SelectPlanFields = {
 }
 
 type SelectPlanProps = {
-	mode: string;
-	setMode: (mode: string) => void;
+	isMonthly: boolean;
+	handleSetMode: () => void;
 	updateSelectedItems: (selectedPlan: Partial<SelectPlanFields>) => void;
 	selectedItems: SelectedItems;
 };
 
-function SelectPlan({ mode, setMode, updateSelectedItems, selectedItems }: SelectPlanProps) {
-	function handleSetMode() {
-		if (mode === MONTHLY) {
-			setMode(YEARLY);
-			return;
-		}
-
-		setMode(MONTHLY);
-	}
+function SelectPlan({ isMonthly, handleSetMode, updateSelectedItems, selectedItems }: SelectPlanProps) {
 
   function handleSelectPlan(item: SelectPlanItems) {
     if (item.name === selectedItems.selectedPlan.name) return;
@@ -44,9 +35,9 @@ function SelectPlan({ mode, setMode, updateSelectedItems, selectedItems }: Selec
 						<div className='select-plan__text-side'>
 							<span className='select-plan__item-name'>{item.name}</span>
 							<span className='select-plan__item-price'>
-                				${mode == MONTHLY ? item.monthly : item.yearly}/{mode == MONTHLY ? "mo" : "yr"}
+                				${isMonthly ? item.monthly : item.yearly}/{isMonthly ? "mo" : "yr"}
               				</span>
-							<span className={mode == MONTHLY ? "select-plan__item-months-free" : "select-plan__item-months-free select-plan__item-months-free--show"}>
+							<span className={isMonthly ? "select-plan__item-months-free" : "select-plan__item-months-free select-plan__item-months-free--show"}>
 								2 months free
 							</span>
 						</div>
@@ -59,7 +50,7 @@ function SelectPlan({ mode, setMode, updateSelectedItems, selectedItems }: Selec
 					type='button'
 					className='select-plan__switch'
 					onClick={handleSetMode}>
-					<div className={mode == MONTHLY ? "select-plan__switch-ball select-plan__switch-ball-left" : "select-plan__switch-ball select-plan__switch-ball-right"}></div>
+					<div className={isMonthly ? "select-plan__switch-ball select-plan__switch-ball-left" : "select-plan__switch-ball select-plan__switch-ball-right"}></div>
 				</button>
 				<span className='select-plan__switch-yearly'>Yearly</span>
 			</div>

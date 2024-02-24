@@ -1,7 +1,6 @@
 import checkmark from "../../assets/images/icon-checkmark.svg";
 import { AddOnsItem, addOnsItems } from "../../data/addOnsItems";
 import { SelectedItems } from "../../App";
-import { MONTHLY } from "../../constants";
 
 type AddOnsFields = {
 	addOns: AddOnsItem[]
@@ -10,10 +9,10 @@ type AddOnsFields = {
 type AddOnsProps = {
 	selectedItems: SelectedItems;
 	updateSelectedItems: (addOns: Partial<AddOnsFields>) => void;
-	mode: string;
+	isMonthly: boolean;
 }
 
-function AddOns({ selectedItems, updateSelectedItems, mode }: AddOnsProps) {
+function AddOns({ selectedItems, updateSelectedItems, isMonthly }: AddOnsProps) {
 	function checkAddOnsSelected(item: AddOnsItem) {
 		if (selectedItems.addOns.includes(item)) return true;
 
@@ -48,7 +47,7 @@ function AddOns({ selectedItems, updateSelectedItems, mode }: AddOnsProps) {
 								{item.desc}
 							</span>
 						</div>
-						<span className='add-ons__item-price'>+${mode == MONTHLY ? item.monthly : item.yearly}/{mode == MONTHLY ? "mo" : "yr"}</span>
+						<span className='add-ons__item-price'>+${isMonthly ? item.monthly : item.yearly}/{isMonthly ? "mo" : "yr"}</span>
 					</div>
 				))}
 			</div>

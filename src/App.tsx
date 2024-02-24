@@ -6,13 +6,13 @@ import SignupContent from "./components/Signup/SignupContent";
 import SignupSidebar from "./components/Signup/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
 import { useState } from "react";
-import { MONTHLY } from "./constants";
 import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
-import { AddOnsItem, addOnsItems } from "./data/addOnsItems";
+import { AddOnsItem } from "./data/addOnsItems";
 import "./sass/main.scss";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema, SignupFields } from "./validations/SignupSchema";
+import useModeForm from "./hooks/useModeForm";
 
 export type SelectedItems = {
 	selectedPlan: SelectPlanItems;
@@ -20,7 +20,6 @@ export type SelectedItems = {
 }
 
 function App() {
-	const [mode, setMode] = useState<string>(MONTHLY);
 	const [selectedItems, setSelectedItems] = useState<SelectedItems>({ selectedPlan: selectPlanItems[0], addOns: [] });
 
 	function updateSelectedItems(fields: Partial<SelectedItems>) {
@@ -32,6 +31,8 @@ function App() {
 	const { register, handleSubmit, formState: { errors } } = useForm<SignupFields>({
 		resolver: zodResolver(signupSchema),
 	  });
+	
+	const { isMonthly, handleSetMode } = useModeForm();
 
 	const {
 		steps,
@@ -43,8 +44,8 @@ function App() {
 		isLastStep,
 	} = useMultistepForm([
 		<PersonInfo register={register} errors={errors} />,
-		<SelectPlan mode={mode} setMode={setMode} updateSelectedItems={updateSelectedItems} selectedItems={selectedItems} />,
-		<AddOns selectedItems={selectedItems} updateSelectedItems={updateSelectedItems} mode={mode} />,
+		<SelectPlan isMonthly={isMonthly} handleSetMode={handleSetMode} updateSelectedItems={updateSelectedItems} selectedItems={selectedItems} />,
+		<AddOns selectedItems={selectedItems} updateSelectedItems={updateSelectedItems} isMonthly={isMonthly} />,
 		<Summary />,
 	]);
 
