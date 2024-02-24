@@ -46,7 +46,7 @@ function App() {
 		<PersonInfo register={register} errors={errors} />,
 		<SelectPlan isMonthly={isMonthly} handleSetMode={handleSetMode} updateSelectedItems={updateSelectedItems} selectedItems={selectedItems} />,
 		<AddOns selectedItems={selectedItems} updateSelectedItems={updateSelectedItems} isMonthly={isMonthly} />,
-		<Summary />,
+		<Summary selectedItems={selectedItems} isMonthly={isMonthly} />,
 	]);
 
 	return (
