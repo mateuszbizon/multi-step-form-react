@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { SelectedItems } from "../../App"
 
 type SummaryProps = {
@@ -6,6 +7,35 @@ type SummaryProps = {
 }
 
 function Summary({ selectedItems, isMonthly }: SummaryProps) {
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  function calculateTotalAmount() {
+    let currentTotalAmount = 0
+
+    if (selectedItems.addOns.length > 0) {
+      selectedItems.addOns.forEach(addOns => {
+        if (isMonthly) {
+          currentTotalAmount += addOns.monthly;
+        } else {
+          currentTotalAmount += addOns.yearly;
+        }
+      })
+    }
+
+    if (isMonthly) {
+      currentTotalAmount += selectedItems.selectedPlan.monthly;
+      setTotalAmount(currentTotalAmount);
+      return;
+    }
+
+    currentTotalAmount += selectedItems.selectedPlan.yearly;
+    setTotalAmount(currentTotalAmount);
+  }
+
+  useEffect(() => {
+    calculateTotalAmount();
+  }, [])
+
   return (
     <div className="summary">
       <h1 className="summary__title">Finishing up</h1>
@@ -29,7 +59,7 @@ function Summary({ selectedItems, isMonthly }: SummaryProps) {
       </div>
       <div className="summary__total-box">
         <span className="summary__total-text">Total (per {isMonthly ? "month" : "year"})</span>
-        <span className="summary__total-price">+12$/{isMonthly ? "mo" : "yr"}</span>
+        <span className="summary__total-price">+{totalAmount}$/{isMonthly ? "mo" : "yr"}</span>
       </div>
     </div>
   )
