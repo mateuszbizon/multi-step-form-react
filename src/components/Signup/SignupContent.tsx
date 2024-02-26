@@ -1,6 +1,7 @@
 import { ReactNode, useEffect } from "react";
 import { SignupFields } from "../../validations/SignupSchema";
 import { SelectedItems } from "../../App";
+import ThanksForm from "../Form/ThanksForm";
 
 type SignupContentProps = {
 	currentStep: ReactNode;
@@ -13,6 +14,8 @@ type SignupContentProps = {
 	goToExactStep: (stepIndex: number) => void;
 	exactStepIndexToMove: number | null;
 	setExactStepIndexToMove: (stepIndex: number | null) => void;
+	isThanksFormActive: boolean;
+	setIsThanksFormActive: (isActive: boolean) => void;
 };
 
 function SignupContent({
@@ -26,13 +29,22 @@ function SignupContent({
 	goToExactStep,
 	exactStepIndexToMove,
 	setExactStepIndexToMove,
+	isThanksFormActive,
+	setIsThanksFormActive,
 }: SignupContentProps) {
 	function submitData(data: SignupFields) {
-		goToNextStep();
-		const finalData = {
-			...data,
-			...selectedItems
+		if (isLastStep) {
+			const finalData = {
+				...data,
+				...selectedItems
+			}
+			console.log(finalData);
+
+			setIsThanksFormActive(true);
+			return;
 		}
+
+		goToNextStep();
 	}
 
 	useEffect(() => {
@@ -44,32 +56,34 @@ function SignupContent({
 
 	return (
 		<div className='signup-content'>
-			<form onSubmit={handleSubmit(submitData)}>
-				<div className='signup-content__main-content'>{currentStep}</div>
-				<div
-					className={
-						isFirstStep
-							? "signup-content__buttons signup-content__buttons--first-step"
-							: "signup-content__buttons"
-					}>
-					{!isFirstStep && (
-						<button
-							type='button'
-							className='signup-content__previous-btn'
-							onClick={goToPreviousStep}>
-							Go Back
-						</button>
-					)}
-					<button
+			{!isThanksFormActive ? (
+				<form onSubmit={handleSubmit(submitData)}>
+					<div className='signup-content__main-content'>{currentStep}</div>
+					<div
 						className={
-							isLastStep
-								? "signup-content__next-btn signup-content__next-btn--confirm-btn"
-								: "signup-content__next-btn"
+							isFirstStep
+								? "signup-content__buttons signup-content__buttons--first-step"
+								: "signup-content__buttons"
 						}>
-						{isLastStep ? "Confirm" : "Next Step"}
-					</button>
-				</div>
-			</form>
+						{!isFirstStep && (
+							<button
+								type='button'
+								className='signup-content__previous-btn'
+								onClick={goToPreviousStep}>
+								Go Back
+							</button>
+						)}
+						<button
+							className={
+								isLastStep
+									? "signup-content__next-btn signup-content__next-btn--confirm-btn"
+									: "signup-content__next-btn"
+							}>
+							{isLastStep ? "Confirm" : "Next Step"}
+						</button>
+					</div>
+				</form>
+			) : <ThanksForm />}
 		</div>
 	);
 }

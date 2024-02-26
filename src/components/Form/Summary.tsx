@@ -49,7 +49,7 @@ function Summary({ selectedItems, isMonthly, setExactStepIndexToMove }: SummaryP
         <div className="summary__plan-box">
           <div className="summary__plan-text">
             <span className="summary__plan-name">Arcade ({isMonthly ? "Monthly" : "Yearly"})</span>
-            <button className="summary__plan-change-btn" onClick={handleMoveToExactStep}>Change</button>
+            <button type="button" className="summary__plan-change-btn" onClick={handleMoveToExactStep}>Change</button>
           </div>
           <span className="summary__plan-price">
             ${isMonthly ? selectedItems.selectedPlan.monthly : selectedItems.selectedPlan.yearly}/{isMonthly ? "mo" : "yr"}

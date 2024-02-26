@@ -22,6 +22,7 @@ export type SelectedItems = {
 function App() {
 	const [selectedItems, setSelectedItems] = useState<SelectedItems>({ selectedPlan: selectPlanItems[0], addOns: [] });
 	const [exactStepIndexToMove, setExactStepIndexToMove] = useState<number | null>(null)
+	const [isThanksFormActive, setIsThanksFormActive] = useState(false);
 
 	function updateSelectedItems(fields: Partial<SelectedItems>) {
 		setSelectedItems(prev => {
@@ -66,6 +67,8 @@ function App() {
 					goToExactStep={goToExactStep}
 					exactStepIndexToMove={exactStepIndexToMove}
 					setExactStepIndexToMove={setExactStepIndexToMove}
+					isThanksFormActive={isThanksFormActive}
+					setIsThanksFormActive={setIsThanksFormActive}
 				/>
 			</div>
 		</>
