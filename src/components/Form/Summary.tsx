@@ -4,10 +4,15 @@ import { SelectedItems } from "../../App"
 type SummaryProps = {
   selectedItems: SelectedItems;
   isMonthly: boolean;
+  setExactStepIndexToMove: (stepIndex: number | null) => void;
 }
 
-function Summary({ selectedItems, isMonthly }: SummaryProps) {
+function Summary({ selectedItems, isMonthly, setExactStepIndexToMove }: SummaryProps) {
   const [totalAmount, setTotalAmount] = useState(0);
+
+  function handleMoveToExactStep() {
+    setExactStepIndexToMove(1);
+  }
 
   function calculateTotalAmount() {
     let currentTotalAmount = 0
@@ -44,7 +49,7 @@ function Summary({ selectedItems, isMonthly }: SummaryProps) {
         <div className="summary__plan-box">
           <div className="summary__plan-text">
             <span className="summary__plan-name">Arcade ({isMonthly ? "Monthly" : "Yearly"})</span>
-            <button className="summary__plan-change-btn">Change</button>
+            <button className="summary__plan-change-btn" onClick={handleMoveToExactStep}>Change</button>
           </div>
           <span className="summary__plan-price">
             ${isMonthly ? selectedItems.selectedPlan.monthly : selectedItems.selectedPlan.yearly}/{isMonthly ? "mo" : "yr"}

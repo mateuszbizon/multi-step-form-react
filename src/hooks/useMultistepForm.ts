@@ -15,6 +15,10 @@ function useMultistepForm(steps: ReactNode[]) {
         setCurrentStepIndex(currentStepIndex => currentStepIndex - 1);
     }
 
+    function goToExactStep(stepIndex: number) {
+        setCurrentStepIndex(stepIndex);
+    }   
+
 	return {
 		steps,
 		currentStepIndex,
@@ -23,6 +27,7 @@ function useMultistepForm(steps: ReactNode[]) {
         goToPreviousStep,
         isFirstStep: currentStepIndex === 0,
         isLastStep: currentStepIndex === steps.length - 1,
+        goToExactStep,
 	};
 }
 

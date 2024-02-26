@@ -21,6 +21,7 @@ export type SelectedItems = {
 
 function App() {
 	const [selectedItems, setSelectedItems] = useState<SelectedItems>({ selectedPlan: selectPlanItems[0], addOns: [] });
+	const [exactStepIndexToMove, setExactStepIndexToMove] = useState<number | null>(null)
 
 	function updateSelectedItems(fields: Partial<SelectedItems>) {
 		setSelectedItems(prev => {
@@ -42,11 +43,12 @@ function App() {
 		goToPreviousStep,
 		isFirstStep,
 		isLastStep,
+		goToExactStep,
 	} = useMultistepForm([
 		<PersonInfo register={register} errors={errors} />,
 		<SelectPlan isMonthly={isMonthly} handleSetMode={handleSetMode} updateSelectedItems={updateSelectedItems} selectedItems={selectedItems} />,
 		<AddOns selectedItems={selectedItems} updateSelectedItems={updateSelectedItems} isMonthly={isMonthly} />,
-		<Summary selectedItems={selectedItems} isMonthly={isMonthly} />,
+		<Summary selectedItems={selectedItems} isMonthly={isMonthly} setExactStepIndexToMove={setExactStepIndexToMove} />,
 	]);
 
 	return (
@@ -61,6 +63,9 @@ function App() {
 					isLastStep={isLastStep}
 					handleSubmit={handleSubmit}
 					selectedItems={selectedItems}
+					goToExactStep={goToExactStep}
+					exactStepIndexToMove={exactStepIndexToMove}
+					setExactStepIndexToMove={setExactStepIndexToMove}
 				/>
 			</div>
 		</>

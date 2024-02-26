@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { SignupFields } from "../../validations/SignupSchema";
 import { SelectedItems } from "../../App";
 
@@ -10,6 +10,9 @@ type SignupContentProps = {
 	isLastStep: boolean;
 	handleSubmit: any;
 	selectedItems: SelectedItems;
+	goToExactStep: (stepIndex: number) => void;
+	exactStepIndexToMove: number | null;
+	setExactStepIndexToMove: (stepIndex: number | null) => void;
 };
 
 function SignupContent({
@@ -20,6 +23,9 @@ function SignupContent({
 	isLastStep,
 	handleSubmit,
 	selectedItems,
+	goToExactStep,
+	exactStepIndexToMove,
+	setExactStepIndexToMove,
 }: SignupContentProps) {
 	function submitData(data: SignupFields) {
 		goToNextStep();
@@ -28,6 +34,13 @@ function SignupContent({
 			...selectedItems
 		}
 	}
+
+	useEffect(() => {
+		if (exactStepIndexToMove != null) {
+			goToExactStep(exactStepIndexToMove);
+			setExactStepIndexToMove(null);
+		}
+	}, [exactStepIndexToMove])
 
 	return (
 		<div className='signup-content'>
