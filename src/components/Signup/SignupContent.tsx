@@ -56,9 +56,9 @@ function SignupContent({
 
 	return (
 		<div className='signup-content'>
-			{!isThanksFormActive ? (
-				<form onSubmit={handleSubmit(submitData)}>
-					<div className='signup-content__main-content'>{currentStep}</div>
+			<form onSubmit={handleSubmit(submitData)}>
+				<div className='signup-content__main-content'>{!isThanksFormActive ? currentStep : <ThanksForm />}</div>
+				{!isThanksFormActive && (
 					<div
 						className={
 							isFirstStep
@@ -82,8 +82,8 @@ function SignupContent({
 							{isLastStep ? "Confirm" : "Next Step"}
 						</button>
 					</div>
-				</form>
-			) : <ThanksForm />}
+				)}
+			</form>
 		</div>
 	);
 }
