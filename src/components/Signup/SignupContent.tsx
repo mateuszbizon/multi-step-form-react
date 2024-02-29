@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { SignupFields } from "../../validations/SignupSchema";
 import { SelectedItems } from "../../App";
 import ThanksForm from "../Form/ThanksForm";
@@ -11,9 +11,6 @@ type SignupContentProps = {
 	isLastStep: boolean;
 	handleSubmit: any;
 	selectedItems: SelectedItems;
-	goToExactStep: (stepIndex: number) => void;
-	exactStepIndexToMove: number | null;
-	setExactStepIndexToMove: (stepIndex: number | null) => void;
 	isThanksFormActive: boolean;
 	setIsThanksFormActive: (isActive: boolean) => void;
 };
@@ -26,9 +23,6 @@ function SignupContent({
 	isLastStep,
 	handleSubmit,
 	selectedItems,
-	goToExactStep,
-	exactStepIndexToMove,
-	setExactStepIndexToMove,
 	isThanksFormActive,
 	setIsThanksFormActive,
 }: SignupContentProps) {
@@ -46,13 +40,6 @@ function SignupContent({
 
 		goToNextStep();
 	}
-
-	useEffect(() => {
-		if (exactStepIndexToMove != null) {
-			goToExactStep(exactStepIndexToMove);
-			setExactStepIndexToMove(null);
-		}
-	}, [exactStepIndexToMove])
 
 	return (
 		<div className='signup-content'>

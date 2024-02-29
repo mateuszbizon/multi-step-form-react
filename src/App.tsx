@@ -5,7 +5,7 @@ import Summary from "./components/Form/Summary";
 import SignupContent from "./components/Signup/SignupContent";
 import SignupSidebar from "./components/Signup/SignupSidebar";
 import useMultistepForm from "./hooks/useMultistepForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SelectPlanItems, selectPlanItems } from "./data/selectPlanItems";
 import { AddOnsItem } from "./data/addOnsItems";
 import "./sass/main.scss";
@@ -52,6 +52,13 @@ function App() {
 		<Summary selectedItems={selectedItems} isMonthly={isMonthly} setExactStepIndexToMove={setExactStepIndexToMove} />,
 	]);
 
+	useEffect(() => {
+		if (exactStepIndexToMove != null) {
+			goToExactStep(exactStepIndexToMove);
+			setExactStepIndexToMove(null);
+		}
+	}, [exactStepIndexToMove])
+
 	return (
 		<>
 			<div className='signup'>
@@ -64,9 +71,6 @@ function App() {
 					isLastStep={isLastStep}
 					handleSubmit={handleSubmit}
 					selectedItems={selectedItems}
-					goToExactStep={goToExactStep}
-					exactStepIndexToMove={exactStepIndexToMove}
-					setExactStepIndexToMove={setExactStepIndexToMove}
 					isThanksFormActive={isThanksFormActive}
 					setIsThanksFormActive={setIsThanksFormActive}
 				/>
