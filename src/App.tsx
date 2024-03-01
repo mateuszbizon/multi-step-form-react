@@ -62,7 +62,7 @@ function App() {
 	return (
 		<>
 			<div className='signup'>
-				<SignupSidebar steps={steps} currentStepIndex={currentStepIndex} />
+				<SignupSidebar currentStepIndex={currentStepIndex} />
 				<SignupContent
 					currentStep={currentStep}
 					goToNextStep={goToNextStep}

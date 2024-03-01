@@ -1,12 +1,10 @@
-import { ReactNode } from "react";
 import { sidebarInfoSteps } from "../../data/sidebarInfo";
 
 type SignupSidebarProps = {
-	steps: ReactNode[];
 	currentStepIndex: number;
 };
 
-function SignupSidebar({ steps, currentStepIndex }: SignupSidebarProps) {
+function SignupSidebar({ currentStepIndex }: SignupSidebarProps) {
 	return (
 		<div className='signup-sidebar'>
 			<div className='signup-sidebar__steps'>
