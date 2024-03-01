@@ -30,3 +30,17 @@
 		border: none;
 	}
 }
+
+@media (min-width: 768px) {
+	.signup-sidebar {
+		background-image: url("../assets/images/bg-sidebar-desktop.svg");
+		width: 25%;
+		height: 100%;
+		border-radius: 8px;
+
+		&__steps {
+			flex-direction: column;
+			padding: 30px 25px;
+		}
+	}
+}

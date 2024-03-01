@@ -111,3 +111,18 @@
 		font-weight: 700;
 	}
 }
+
+@media (min-width: 768px) {
+	.select-plan {
+		&__items {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+
+		&__item {
+			flex-direction: column;
+			gap: 30px;
+			width: 30%;
+		}
+	}
+}

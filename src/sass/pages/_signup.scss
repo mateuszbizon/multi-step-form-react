@@ -1,7 +1,18 @@
 .signup {
 	display: flex;
 	flex-direction: column;
-	margin: 0 auto;
 	width: clamp(320px, 100%, 400px);
 	height: 100vh;
+}
+
+@media (min-width: 768px) {
+	.signup {
+		flex-direction: row;
+		height: 500px;
+		width: 750px;
+		width: clamp(750px, 80vw, 800px);
+		background-color: #fff;
+		padding: 15px;
+		border-radius: 8px;
+	}
 }

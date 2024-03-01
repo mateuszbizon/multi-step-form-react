@@ -9,4 +9,13 @@
 body {
 	font-family: "Ubuntu", sans-serif;
 	background-color: $main-background-color;
+	height: 100vh;
+}
+
+@media (min-width: 768px) {
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }

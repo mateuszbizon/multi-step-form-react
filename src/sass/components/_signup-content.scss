@@ -2,10 +2,10 @@
 
 .signup-content {
 	position: relative;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	height: 100%;
 
 	&__main-content {
 		position: absolute;
@@ -57,5 +57,20 @@
 		border: none;
 		color: $main-grey-color;
 		cursor: pointer;
+	}
+}
+
+@media (min-width: 768px) {
+	.signup-content {
+		max-width: 75%;
+		justify-content: space-between;
+		flex-grow: 1;
+		padding: 0 50px;
+
+		&__main-content {
+			position: static;
+			transform: translateX(0);
+			width: 100%;
+		}
 	}
 }

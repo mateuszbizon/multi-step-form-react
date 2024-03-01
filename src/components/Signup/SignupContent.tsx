@@ -42,36 +42,34 @@ function SignupContent({
 	}
 
 	return (
-		<div className='signup-content'>
-			<form onSubmit={handleSubmit(submitData)}>
-				<div className='signup-content__main-content'>{!isThanksFormActive ? currentStep : <ThanksForm />}</div>
-				{!isThanksFormActive && (
-					<div
-						className={
-							isFirstStep
-								? "signup-content__buttons signup-content__buttons--first-step"
-								: "signup-content__buttons"
-						}>
-						{!isFirstStep && (
-							<button
-								type='button'
-								className='signup-content__previous-btn'
-								onClick={goToPreviousStep}>
-								Go Back
-							</button>
-						)}
+		<form className="signup-content" onSubmit={handleSubmit(submitData)}>
+			<div className='signup-content__main-content'>{!isThanksFormActive ? currentStep : <ThanksForm />}</div>
+			{!isThanksFormActive && (
+				<div
+					className={
+						isFirstStep
+							? "signup-content__buttons signup-content__buttons--first-step"
+							: "signup-content__buttons"
+					}>
+					{!isFirstStep && (
 						<button
-							className={
-								isLastStep
-									? "signup-content__next-btn signup-content__next-btn--confirm-btn"
-									: "signup-content__next-btn"
-							}>
-							{isLastStep ? "Confirm" : "Next Step"}
+							type='button'
+							className='signup-content__previous-btn'
+							onClick={goToPreviousStep}>
+							Go Back
 						</button>
-					</div>
-				)}
-			</form>
-		</div>
+					)}
+					<button
+						className={
+							isLastStep
+								? "signup-content__next-btn signup-content__next-btn--confirm-btn"
+								: "signup-content__next-btn"
+						}>
+						{isLastStep ? "Confirm" : "Next Step"}
+					</button>
+				</div>
+			)}
+		</form>
 	);
 }
 
