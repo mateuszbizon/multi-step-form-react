@@ -37,7 +37,6 @@ function App() {
 	const { isMonthly, handleSetMode } = useModeForm();
 
 	const {
-		steps,
 		currentStepIndex,
 		currentStep,
 		goToNextStep,
