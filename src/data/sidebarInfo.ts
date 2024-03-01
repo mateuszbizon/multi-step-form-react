@@ -1,0 +1,1 @@
+export const sidebarInfoSteps = ["your info", "select plan", "add-ons", "summary"];

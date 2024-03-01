@@ -13,6 +13,29 @@
 		padding: 20px 0;
 	}
 
+	&__step-box {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	&__step-info {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		text-transform: uppercase;
+		display: none;
+	}
+
+	&__step-info-number {
+		color: $secondary-grey-color;
+		font-size: 13px;
+	}
+
+	&__step-info-text {
+		color: #fff;
+	}
+
 	&__step {
 		display: flex;
 		justify-content: center;
@@ -40,7 +63,12 @@
 
 		&__steps {
 			flex-direction: column;
+			gap: 25px;
 			padding: 30px 25px;
+		}
+
+		&__step-info {
+			display: flex;
 		}
 	}
 }

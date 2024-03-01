@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { sidebarInfoSteps } from "../../data/sidebarInfo";
 
 type SignupSidebarProps = {
 	steps: ReactNode[];
@@ -9,8 +10,8 @@ function SignupSidebar({ steps, currentStepIndex }: SignupSidebarProps) {
 	return (
 		<div className='signup-sidebar'>
 			<div className='signup-sidebar__steps'>
-				{steps.map((_, index) => (
-					<>
+				{sidebarInfoSteps.map((step, index) => (
+					<div key={step} className="signup-sidebar__step-box">
 						<div
 							className={
 								currentStepIndex === index
@@ -19,7 +20,11 @@ function SignupSidebar({ steps, currentStepIndex }: SignupSidebarProps) {
 							}>
 							{index + 1}
 						</div>
-					</>
+						<div className="signup-sidebar__step-info">
+							<span className="signup-sidebar__step-info-number">step {index + 1}</span>
+							<span className="signup-sidebar__step-info-text">{step}</span>
+						</div>
+					</div>
 				))}
 			</div>
 		</div>
