@@ -1,4 +1,3 @@
-import checkmark from "../../assets/images/icon-checkmark.svg";
 import { AddOnsItem, addOnsItems } from "../../data/addOnsItems";
 import { SelectedItems } from "../../App";
 
